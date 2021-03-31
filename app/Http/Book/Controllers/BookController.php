@@ -14,17 +14,15 @@ class BookController extends Controller
        return view('library.book')->with( 'books', $books );
     }
 
-    public function Show( /*$id*/ )
+    public function Show( $id )
     {
-        // $book = Book::find( $id );
+        $book = Book::find( $id );
 
-        // if ( !$book ) 
-        // {
-        //     return redirect()->route('library.book');
-        // }
+        if ( !$book ) 
+        {
+            return redirect()->route('library.book');
+        }
 
-        // return view( 'library.editBook', compact('book') );
-
-        return view('library.editBook');
+        return view( 'library.editBook', compact('book') );
     }
 }

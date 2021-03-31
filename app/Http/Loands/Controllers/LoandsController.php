@@ -8,7 +8,7 @@ use SAASBoilerplate\Domain\Loands\Models\Loands;
 
 class LoandsController extends Controller
 {
-    public function index()
+    public function Index()
     {
         $loands = Loands::all();
         return view('library.loands')->with( 'loands', $loands );

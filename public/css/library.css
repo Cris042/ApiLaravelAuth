@@ -13,25 +13,25 @@
 .content
 {
     width: 70%;
-    height: 500px;
+    height: 510px;
     margin-left: 15%;
-    margin-top: 8%;
+    margin-top: 3%;
     padding: 10px;
-    border: 6px solid rgba(220, 220, 220, 0.932);
+    border: 2px solid rgba(233, 223, 223, 0.932);
     background-clip: padding-box;              
-    background: #f5f5f5;
+    background: #fff;
 }
 
 .content-edit
 {
-    width: 35%;
-    height: 450px;
-    margin-left: 32.5%;
-    margin-top: 8%;
+    width: 30%;
+    height: 530px;
+    margin-left: 35%;
+    margin-top: 3%;
     padding: 10px;
     border: 6px solid rgba(220, 220, 220, 0.932);
     background-clip: padding-box;              
-    background: #f5f5f5;
+    background: #fff;
 }
 
 
@@ -46,7 +46,7 @@
     float: left;
     height: 100%;
     background-clip: padding-box;
-    border-right: 2px solid rgba(220, 220, 220, 0.932);
+    border-right: 1px solid rgba(220, 220, 220, 0.932);
 }
 
 .card-users
@@ -54,7 +54,7 @@
     float: right;                
     height: 100%;
     background-clip: padding-box;
-    border-left: 2px solid rgba(220, 220, 220, 0.932);
+    border-left: 1px solid rgba(220, 220, 220, 0.932);
 }
 
 .title
@@ -67,19 +67,29 @@
 
 .card-content   
 {
-    width: 90%;
-    max-height: 50%;
+    width: 90%; 
     margin-left: 5%;
     margin-top: 10%;
+    height: 80%;
+    overflow-y: auto;
+}
+
+.card-content-book   
+{
+    width: 90%; 
+    margin-left: 5%;
+    margin-top: 10%;
+    height: 48%;
     overflow-y: auto;
 }
 
 .card-content-edit  
 {
     width: 90%;
-    max-height: 50%;
     margin-left: 5%;
     margin-top: 10%;
+    height: 80%;
+    overflow-y: auto;
 }
 
 .input-w80
@@ -99,7 +109,7 @@
 
 .input-search
 {
-    margin-top: 10%;
+    margin-top: 7%;
 }
 
 .btn-input
@@ -114,7 +124,7 @@
     transition: all 0.3ms;
 }
 
-.card-content > ul > li
+.card-content-book > ul > li
 {
     height: 60px;
     width: 90%;
@@ -139,7 +149,7 @@
     display: block;   
     text-decoration: none;
     left: 60%;
-    margin-top: -5%;              
+    margin-top: -7%;              
     border-radius: 5px;
     border: 2px solid  #c25208;
     padding: 5px;
@@ -154,7 +164,7 @@
     display: block;           
     text-decoration: none;        
     left: 80%;
-    margin-top: -7.8%;       
+    margin-top: -7.4%;       
     border-radius: 5px;
     border: 2px solid #a30b0b;
     padding: 4px;
@@ -178,4 +188,20 @@
     margin-left: 10px;
     text-align: left;
     color: red;
+}
+
+.btn-back
+{
+    background: transparent;
+    color: #000;
+    width: 30%;
+    font-size: 18px;
+    margin-right: 90%;
+    position: absolute;
+    margin-top: -3.4%;
+}
+
+.btn-back:hover
+{
+    color: aqua;
 }

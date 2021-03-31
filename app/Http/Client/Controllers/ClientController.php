@@ -14,17 +14,15 @@ class ClientController extends Controller
         return view('library.client')->with( 'clients', $clients );
     }
 
-    public function Show( /*$id*/ )
+    public function Show( $id )
     {
-        // $client = Client::find( $id );
+        $client = Client::find( $id );
     
-        // if ( !$client ) 
-        // {
-        //     return redirect()->route('library.client');
-        // }
+        if ( !$client ) 
+        {
+            return redirect()->route('library.client');
+        }
     
-        // return view( 'library.editClient', compact('client') );
-    
-        return view('library.editClient');
+        return view( 'library.editClient', compact('client') );
     }
 }
