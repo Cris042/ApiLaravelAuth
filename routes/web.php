@@ -402,22 +402,32 @@ Route::group(['namespace' => 'Webhook\Controllers'], function () {
     Route::post('/webhooks/stripe', 'StripeWebhookController@handleWebhook');
 });
 
-Route::group(['namespace' => 'Libary\Controllers'], function () 
+
+/**
+ *  Library
+*/
+
+Route::group(['namespace' => 'Book\Controllers'], function () 
 {
-    Route::post('/webhooks/stripe', 'LibaryController@Index');
+    Route::get('/book', 'BookController@Index')->name('library.book');
 });
 
 Route::group(['namespace' => 'Book\Controllers'], function () 
 {
-    Route::get('/book', 'BookController@Index');
+    Route::get('/book/edit/{id}', 'BookController@Show')->name('library.book.edit');
 });
 
 Route::group(['namespace' => 'Client\Controllers'], function () 
 {
-    Route::get('/client', 'ClientController@Index');
+    Route::get('/client', 'ClientController@Index')->name('library.client');
+});
+
+Route::group(['namespace' => 'Client\Controllers'], function () 
+{
+    Route::get('/client/edit/{id}', 'ClientController@Show')->name('library.client.edit');
 });
 
 Route::group(['namespace' => 'Loands\Controllers'], function () 
 {
-    Route::get('/loands', 'LoandsController@Index');
+    Route::get('/loands', 'LoandsController@Index')->name('loands.book');
 });

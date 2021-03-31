@@ -15,7 +15,7 @@
                     <li class="nav-item dropdown"><!-- My Companies -->
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            My Companies <span class="caret"></span>
+                           Manage Library <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,34 +27,52 @@
 
                             <div class="dropdown-divider"></div>
                             <!-- Create New Company Link -->
-                            <a class="dropdown-item" href="{{ route('account.companies.create') }}">
+                            {{-- <a class="dropdown-item" href="{{ route('account.companies.create') }}">
                                 New company
                             </a>
 
                             <!-- View All Link -->
                             <a class="dropdown-item" href="{{ route('account.companies.index') }}">
                                 View all
+                            </a> --}}
+
+                           
+                            <!--\Library -->
+                            
+                            <a class="dropdown-item" href="{{ route('library.book') }}">
+                                 Menage Books
                             </a>
+
+                            <a class="dropdown-item" href="{{ route('library.client') }}">
+                                 Menage Clients
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('loands.book') }}">
+                                 Menage Loands
+                            </a>
+
+                            <!--\Library -->
+
                         </div>
                     </li>
 
                     <!-- Projects -->
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link{{ return_if(on_page('tenant.projects.index'), ' active') }}"
                            href="{{ route('tenant.projects.index') }}">
                             Projects
                         </a>
-                    </li>
+                    </li> --}}
                 @endauth
 
-                @notsubscribed
+                {{-- @notsubscribed
                 <li class="nav-item">
                     <a class="nav-link{{ return_if(on_page('plans.index'), ' active') }}"
                        href="{{ route('plans.index') }}">
                         Pricing
                     </a>
                 </li>
-                @endnotsubscribed
+                @endnotsubscribed --}}
             </ul>
 
             <!-- Right Side Of Navbar -->
