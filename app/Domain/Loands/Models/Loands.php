@@ -2,29 +2,29 @@
 
 namespace SAASBoilerplate\Domain\Loands\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use SAASBoilerplate\App\Tenant\Traits\IsTenant;
-use SAASBoilerplate\Domain\Projects\Models\Project;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Loands extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class Loands extends Authenticatable
 {
-    use IsTenant;
+    use Notifiable;
 
     protected $fillable = [
         'client_id',
         'book_id',
-        'expires_at',
-        'created_at'
+        'value',
+        'amount',
+        'state',
+        'expires_at'
     ];
 
     /**
-     * Get projects owned by company.
-     * 
-     * @return HasMany
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
      */
-    public function projects()
-    {
-        return $this->hasMany( Project::class );
-    }
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
 }

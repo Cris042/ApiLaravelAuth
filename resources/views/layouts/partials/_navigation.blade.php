@@ -15,7 +15,7 @@
                     <li class="nav-item dropdown"><!-- My Companies -->
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           Manage Library <span class="caret"></span>
+                           Gerenciar Bibilioteca <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,15 +40,15 @@
                             <!--\Library -->
                             
                             <a class="dropdown-item" href="{{ route('library.book') }}">
-                                 Menage Books
+                                 Gerenciar Livros
                             </a>
 
                             <a class="dropdown-item" href="{{ route('library.client') }}">
-                                 Menage Clients
+                                 Gerenciar Clientes
                             </a>
 
-                            <a class="dropdown-item" href="{{ route('loands.book') }}">
-                                 Menage Loands
+                            <a class="dropdown-item" href="{{ route('library.loands') }}">
+                                 Gerenciar Emprestimos
                             </a>
 
                             <!--\Library -->

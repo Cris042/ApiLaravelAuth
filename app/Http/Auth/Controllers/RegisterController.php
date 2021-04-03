@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'activated' => false,
+            'activated' => true,
         ]);
     }
 
@@ -90,7 +90,7 @@ class RegisterController extends Controller
         $this->guard()->logout();
 
         //send user an activation email
-        event(new UserSignedUp($user));
+        //event(new UserSignedUp($user));
 
         //redirect user
         return redirect($this->redirectPath())

@@ -17,6 +17,9 @@ class CreateLoandsModelsTable extends Migration
             $table->increments('id');
             $table->integer('client_id')->unsigned();
             $table->integer('book_id')->unsigned();
+            $table->integer('value');
+            $table->integer('amount');
+            $table->integer('state');
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
 

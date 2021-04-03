@@ -14,11 +14,11 @@
         @endif
 
         <div class = "card-content">
-            <form method="post">
+            <form action="{{ route('library.book.store') }}" method="post" >
                 @csrf
                 <input class = "input-w80" type = "text" name = "title" placeholder="Titulo do livro" />
                 <input class = "input-w80" type = "text" name = "author" placeholder="Autor do livro" />
-                <input class = "input-w80" type = "text" name = "title" placeholder="Valor da locação" />
+                <input class = "input-w80" type = "text" name = "value" placeholder="Valor da locação" />
                 <input class = "input-w80" type = "text" name = "description" placeholder="Descrição do livro" />
                 <input class = "input-w80" type = "text" name = "amount" placeholder="Quantidade em estoque" />
                 <input class = "input-w80 btn-input" type = "submit" />
@@ -30,7 +30,7 @@
     <div class = "card-users w50">
         <p class = "title"> Livros </p>
 
-        <form  method="post">
+        <form action="{{ route('library.book.search') }}" method="post">
             @csrf
             <input class = "input-w80 input-search search" type = "text" name = "search" placeholder="Pesquiser por titlulo ou autor do livro" />
         </form>
@@ -42,7 +42,7 @@
                         {{ $book->title }}
                         <a class = "btn-edit" href = "{{ route('library.book.edit', $book->id) }}"> Editar </a> 
 
-                        <form  method="post">
+                        <form action="{{ route('library.book.destroy', $book->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class = "btn-delet" > Deletar </a>

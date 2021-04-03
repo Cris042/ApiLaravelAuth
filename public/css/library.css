@@ -13,7 +13,7 @@
 .content
 {
     width: 70%;
-    height: 510px;
+    height: 530px;
     margin-left: 15%;
     margin-top: 3%;
     padding: 10px;
@@ -184,10 +184,12 @@
 
 .msn-erro
 {
-    margin-top: 10px;
-    margin-left: 10px;
-    text-align: left;
-    color: red;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline;
+    list-style: none;
+    color:#000;
 }
 
 .btn-back
@@ -204,4 +206,10 @@
 .btn-back:hover
 {
     color: aqua;
+}
+
+.label-msn
+{
+    text-align: center;
+    margin-top: 2px;
 }

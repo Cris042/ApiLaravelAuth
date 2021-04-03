@@ -14,20 +14,25 @@
             @endif
 
             <div class = "card-content">
-                <form method="post">
+                <form action="{{ route('library.loands.store') }}" method="post">
                     @csrf
 
+                    <p class="label-msn"> Livros </p>
                     <select class = "input-w80" name = "book_id">
-                        <option> User 01</option>
-                        <option> User 02</option>
+                        @foreach ( $books as $book ) 
+                            <option value="{{ $book->id }}"> {{ $book->title }} </option>
+                        @endforeach
                     </select>
 
+                    <p class="label-msn"> Users </p>
                     <select class = "input-w80" name = "client_id">
-                        <option> Livro 01</option>
-                        <option> Livro 02</option>
+                        @foreach ( $clients as $client ) 
+                            <option value="{{ $client->id }}" > {{ $client->name }} </option>
+                        @endforeach
                     </select>
 
-                    <input class = "input-w80" type = "date" name = "expires_at" placeholder="Telefone do cliente" />
+                    <input class = "input-w80" type = "text" name = "amount" placeholder="Quantidade de Livros Emprestados" />
+                    <input class = "input-w80" type = "date" name = "expires_at"  min="2021-05-01" max="2021-12-31" />
                     <input class = "input-w80 btn-input" type = "submit" />
                 </form>                     
             </div><!--\ card-content !-->
@@ -37,20 +42,22 @@
         <div class = "card-users w50">
             <p class = "title"> Emprestimos </p>
 
-            <form  method="post">
+            <form action="{{ route('library.loands.search') }}" method="post">
                 @csrf
-                <input class = "input-w80 input-search search" type = "text" name = "search" placeholder="Pesquiser por nome" />
+                <input class = "input-w80 input-search search" type = "text" name = "search" placeholder="Pesquiser por nome do livro" />
             </form>
 
             <div class="card-content-book">
                 <ul>
                     @foreach ( $loands as $loand ) 
                         <li> 
-                            O Cliente {{ $loand->client_id  }} Pegou o livro {{ $loand->book_id }}                        
+                            
+                            O Cliente {{  DB::table('client')->where( 'id',$loand->client_id )->value('name')  }} 
+                            Pegou o livro {{ DB::table('book')->where( 'id',$loand->book_id )->value('title')   }}                 
                     
-                            <form  method="post">
+                            <form action="{{ route('library.loands.edit',$loand->id) }}" method="post">
                                 @csrf
-                                <input type="hidden" name="_method" value="put">
+                                @method('put')
                                 <button type="submit" class = "btn-delet" > Finalizar </a>
                             </form>
                         </li>

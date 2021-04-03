@@ -17,7 +17,7 @@ class CreateClientModelsTable extends Migration
             $table->increments('id');
             $table->string('name', 120)->unique();
             $table->string('cpf', 14)->unique();
-            $table->integer('telephone')->nullable();
+            $table->string('telephone', 14);
             $table->timestamps();
         });
     }

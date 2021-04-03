@@ -407,27 +407,30 @@ Route::group(['namespace' => 'Webhook\Controllers'], function () {
  *  Library
 */
 
-Route::group(['namespace' => 'Book\Controllers'], function () 
+Route::group(['namespace' => 'Book\Controllers', 'middleware' => ['auth'] ], function () 
 {
     Route::get('/book', 'BookController@Index')->name('library.book');
-});
-
-Route::group(['namespace' => 'Book\Controllers'], function () 
-{
     Route::get('/book/edit/{id}', 'BookController@Show')->name('library.book.edit');
+    Route::put('/book/edit/{id}', 'BookController@Update')->name('library.book.edit');
+    Route::delete('/book/delet/{id}', 'BookController@Destroy')->name('library.book.destroy');
+    Route::post('/creatBook', 'BookController@Store')->name('library.book.store');
+    Route::any('/bookSearch', 'BookController@Search')->name('library.book.search');
 });
 
-Route::group(['namespace' => 'Client\Controllers'], function () 
+Route::group(['namespace' => 'Client\Controllers', 'middleware' => ['auth'] ], function () 
 {
     Route::get('/client', 'ClientController@Index')->name('library.client');
-});
-
-Route::group(['namespace' => 'Client\Controllers'], function () 
-{
     Route::get('/client/edit/{id}', 'ClientController@Show')->name('library.client.edit');
+    Route::put('/client/edit/{id}', 'ClientController@Update')->name('library.client.edit');
+    Route::delete('/client/delet/{id}', 'ClientController@Destroy')->name('library.client.destroy');
+    Route::post('/creatclient', 'ClientController@Store')->name('library.client.store');
+    Route::any('/clientSearch', 'ClientController@Search')->name('library.client.search');
 });
 
-Route::group(['namespace' => 'Loands\Controllers'], function () 
+Route::group(['namespace' => 'Loands\Controllers', 'middleware' => ['auth'] ], function () 
 {
-    Route::get('/loands', 'LoandsController@Index')->name('loands.book');
+    Route::get('/loands', 'LoandsController@Index')->name('library.loands');
+    Route::post('/creatLoands', 'LoandsController@Store')->name('library.loands.store');
+    Route::put('/editLoands/{id}', 'LoandsController@Update')->name('library.loands.edit');
+    Route::any('/loandsSearch', 'LoandsController@Search')->name('library.loands.search');
 });

@@ -15,11 +15,16 @@
             @endif
 
             <div class = "card-content-edit">
-                <form  method="post">
+                <form action="{{ route('library.client.edit',$client->id) }}" method="post">
                     @csrf
+                    @method('put')
                     <input class = "input-w80" type = "text" name = "name" value ="{{ $client->name }}" placeholder="Nome do cliente" />
-                    <input class = "input-w80" type = "text" name = "cpf"  value ="{{ $client->cpf }}" placeholder="Cpf do cliente" />
-                    <input class = "input-w80" type = "text" name = "telephone" value ="{{ $client->telephone }}" placeholder="Telefone do cliente" />
+                    <input class = "input-w80" type = "text" name = "cpf"  value ="{{ $client->cpf }}" 
+                            placeholder="Cpf. Exemplo (999.999.999-99)" />
+                    <input class = "input-w80" type = "text" name = "telephone" value ="{{ $client->telephone }}" 
+                            placeholder="Telefone. Exemplo ( (64)9999-9999)" />
+                    <input class = "input-w80" type = "hidden" name = "cpfCurrent"  value ="{{ $client->cpf }}" />
+                    <input class = "input-w80" type = "hidden" name = "nameCurrent"  value ="{{ $client->name }}" />
                     <input class = "input-w80 btn-input" type = "submit" />
                 </form >  
             </div><!--\ card-content !-->

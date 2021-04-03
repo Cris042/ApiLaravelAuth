@@ -19,6 +19,7 @@
         "laravel/passport": "^9.3.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "laravellegends/pt-br-validator": "^8.0",
         "pragmarx/countries": "^v0.6.2",
         "unisharp/laravel-filemanager": "^v2.1.0"
     },
