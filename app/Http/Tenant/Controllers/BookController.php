@@ -18,28 +18,43 @@ class BookController extends Controller
 
     public function Show( $id )
     {
-        $book = Book::find( $id );
-
-        if ( !$book ) 
+        $book =  Book::find( $id );
+    
+        if ( !$book  ) 
         {
             return redirect()->route('tenant.library.book');
         }
-
-        return view('library.editBook', compact('book') );
+        else if( $book->company_id == session('tenant')  )
+        {
+            return view('library.editBook', compact('book') );
+        }
+        else
+        {
+            return redirect()->route('tenant.library.book');
+        }
     }
 
     public function Store( Validation $request )
     {
-        $book = new Book();
-        $book->title =  $request->get('title');  
-        $book->author = $request->get('author');
-        $book->value =  $request->get('value'); 
-        $book->description = $request->get('description');
-        $book->amount = $request->get('amount'); 
-        $book->company_id =  $request->get('company_id'); 
-        $book->save();
+        $verificar = Book::where('title', $request->get('title') )->where( 'company_id' ,session('tenant' ) )->exists();
 
-        return redirect()->route('tenant.library.book');
+        if( $verificar == true  ) 
+        {
+            dd("Livro existente!");
+        }
+        else
+        { 
+            $book = new Book();
+            $book->title =  $request->get('title');  
+            $book->author = $request->get('author');
+            $book->value =  $request->get('value'); 
+            $book->description = $request->get('description');
+            $book->amount = $request->get('amount'); 
+            $book->company_id =  $request->get('company_id'); 
+            $book->save();
+
+            return redirect()->route('tenant.library.book');
+        }
        
     }
 
@@ -52,7 +67,7 @@ class BookController extends Controller
        
         if( $request->get('titleCurrent') != $request->get('title') )
         {
-            if ( Book::where('title', $request->get('title') )->exists() ) 
+            if ( Book::where('title', $request->get('title') )->where( 'company_id' ,session('tenant' ) )->exists() ) 
                     dd("Livro existente");
             else
             {
@@ -85,8 +100,8 @@ class BookController extends Controller
     {
         $filters = $request->except('_token');
 
-        $books = Book::where('title', 'LIKE', "%{$request->search}%")->orWhere('author', 'LIKE', "%{$request->search}%")->paginate();
+        $books = Book::where( 'company_id',session('tenant' ) )->where( 'title', 'LIKE', "%{$request->search}%" )->paginate();
 
-        return view('tenant.library.book', compact('books', 'filters'));
+        return view('library.book', compact('books', 'filters'));
     }
 }

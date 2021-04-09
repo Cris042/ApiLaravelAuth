@@ -27,7 +27,7 @@ class Validation extends FormRequest
     public function rules()
     {
         return [
-           'name' => [ 'required' , 'min:2' , 'max:160', 'unique:client' ],
+           'name' => [ 'required' , 'min:2' , 'max:160' ],
            'cpf' => [  new FormatoCpf , 'unique:client', ],
            'telephone' => [ 'required' , 'telefone_com_ddd' ] 
         ];
@@ -39,7 +39,6 @@ class Validation extends FormRequest
             'name.required' =>  'O nome e obrigatorio.',
             'name.min' => 'Não e permetidos nomes com menos de 2 caracter.',
             'name.max' => 'Não e permetidos nomes com mais de 160 caracter.',
-            'name.unique' => 'Não e permetidos nomes repedido.',
         ];
     }
 }

@@ -20,18 +20,16 @@
                         </div><!-- /.card-title -->
                     </div><!-- /.card-body -->
                    
-                    <div class="list-group list-group-flush">
-                        {{-- @foreach($projects as $project) --}}
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="{{ route('tenant.library.client' , session('tenant') ) }}"> Clients </a>                                                            
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">                                   
-                                <a href="{{ route('tenant.library.book', session('tenant') ) }}"> Books </a>                                                                      
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">                        
-                                <a href="{{ route('tenant.library.loands', session('tenant') ) }}"> Loands </a>                                       
-                            </div>
-                        {{-- @endforeach --}}
+                    <div class="list-group list-group-flush">            
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{ route('tenant.library.client' , session('tenant') ) }}"> Clients </a>                                                            
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">                                   
+                            <a href="{{ route('tenant.library.book', session('tenant') ) }}"> Books </a>                                                                      
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">                        
+                            <a href="{{ route('tenant.library.loands', session('tenant') ) }}"> Loands </a>                                       
+                        </div>                       
                     </div><!-- /.list-group -->
                   
                 </div><!-- /.card -->

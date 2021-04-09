@@ -24,9 +24,9 @@ class CreateLoandsTable extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
 
-            $table->foreign('company_id')->references('id')->on('companies')->cascate();
-            $table->foreign('client_id')->references('id')->on('client')->cascate();
-            $table->foreign('book_id')->references('id')->on('book')->cascate();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete("cascade");
+            $table->foreign('client_id')->references('id')->on('client')->onDelete("cascade");
+            $table->foreign('book_id')->references('id')->on('book')->onDelete("cascade");
         });
     }
 

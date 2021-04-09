@@ -15,14 +15,14 @@ class CreateBookTable extends Migration
         Schema::create('book', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
-            $table->string('title', 160)->unique();
+            $table->string('title', 160);
             $table->string('author', 100);
             $table->integer('value');
             $table->string('description', 512);
             $table->integer('amount');
             $table->timestamps();         
 
-            $table->foreign('company_id')->references('id')->on('companies')->cascate();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete("cascade");
         });
     }
 

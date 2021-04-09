@@ -33,7 +33,7 @@
 
         <form action="{{ route('tenant.library.book.search') }}" method="post">
             @csrf
-            <input class = "input-w80 input-search search" type = "text" name = "search" placeholder="Pesquiser por titlulo ou autor do livro" />
+            <input class = "input-w80 input-search search" type = "text" name = "search" placeholder="Pesquiser por titlulo do livro" />
         </form>
 
         <div class="card-content-book">

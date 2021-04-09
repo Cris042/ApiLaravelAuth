@@ -16,12 +16,12 @@ class CreateClientTable extends Migration
         Schema::create('client', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
-            $table->string('name', 120)->unique();
+            $table->string('name', 120);
             $table->string('cpf', 14)->unique();
             $table->string('telephone', 14);
             $table->timestamps();
 
-            $table->foreign('company_id')->references('id')->on('companies')->cascate();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete("cascade");
         });
     }
 

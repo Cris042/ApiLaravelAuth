@@ -12,33 +12,49 @@ class ClientController extends Controller
 {
     public function Index()
     {
-        $clients = Client::all()->Where( 'company_id','=', session('tenant') );
+        $clients = Client::all()->Where( 'company_id', session('tenant') );
         return view('library.client')->with( 'clients', $clients );
     }
 
     public function Show( $id )
     {
-        $client = Client::find( $id );
+        $client =  Client::find( $id );
     
-        if ( !$client ) 
+        if ( !$client  ) 
         {
             return redirect()->route('tenant.library.client');
         }
-    
-        return view('library.editClient', compact('client') );
+        else if(  $client->company_id == session('tenant')  )
+        {
+            return view('library.editClient', compact('client') );
+        }
+        else
+        {
+            return redirect()->route('tenant.library.client');
+        }
+        
     }
 
     public function Store( Validation $request )
     {
-        $client = new Client();
-        $client->name =  $request->get('name');  
-        $client->cpf = $request->get('cpf');
-        $client->telephone =  $request->get('telephone'); 
-        $client->company_id =  $request->get('company_id'); 
-        $client->save();
+        $verificar = Client::where('name', $request->get('name') )->where( 'company_id', session('tenant' ) )->exists();
 
-        return redirect()->route('tenant.library.client');
-       
+        if( $verificar == true  ) 
+        {
+            dd("Cliente existente!");
+        }
+        else
+        {
+            $client = new Client();
+            $client->name =  $request->get('name');  
+            $client->cpf = $request->get('cpf');
+            $client->telephone =  $request->get('telephone'); 
+            $client->company_id =  $request->get('company_id'); 
+            $client->save();
+
+            return redirect()->route('tenant.library.client');
+        }
+
     }
 
     public function Update( ValidationEdit $request, $id)
@@ -60,8 +76,8 @@ class ClientController extends Controller
 
         if( $request->get('nameCurrent') != $request->get('name') )
         {
-            if ( Client::where('name', $request->get('name') )->exists() ) 
-                    dd("User existente");
+            if ( Client::where('name', '=' ,$request->get('name') )->where( 'company_id', '=' ,session('tenant' ) )->exists() ) 
+                    dd("Cliente existente");
             else
             {
                 $request->merge( ['name' => $request->get('name') ] );
@@ -93,8 +109,8 @@ class ClientController extends Controller
     {
         $filters = $request->except('_token');
 
-        $clients = Client::where('name', 'LIKE', "%{$request->search}%")->paginate();
-
+        $clients = Client::where( 'company_id',session('tenant' ) )->where( 'name', 'LIKE', "%{$request->search}%" )->paginate();
+     
         return view('library.client', compact('clients', 'filters'));
     }
 }

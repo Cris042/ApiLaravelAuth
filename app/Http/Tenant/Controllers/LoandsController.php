@@ -13,8 +13,8 @@ class LoandsController extends Controller
 {
     public function Index()
     {
-        $loands = Loands::all()->where( 'state', 1, 'and','company_id', session('tenant') );
-        $books =  Book::all()->where('amount', '>', 1 );
+        $loands = Loands::all()->where( 'state',  1 )->where('company_id', '=' , session('tenant') );
+        $books  =   Book::all()->where('amount', '>', 1 )->where('company_id', '=' , session('tenant') );
         $clients =  Client::all()->Where( 'company_id', session('tenant') );
 
         return view('library.loands')->with( 'loands', $loands )->with( 'books', $books )->with( 'clients', $clients );
@@ -65,13 +65,13 @@ class LoandsController extends Controller
 
     public function Search( Request $request )
     {
-        $book = Book::where( 'title',  $request->search  )->value('id');
+        $book =  Book::where( 'company_id',session('tenant' ) )->where( 'title', 'LIKE', "%{$request->search}%" )->value('id');
         $loands = Loands::where( 'book_id', $book )->paginate();
 
         $books =  Book::all()->where('amount', '>', 1 );
         $clients =  Client::all();
 
-        return view('tenant.library.loands ')->with( 'loands', $loands )->with( 'books', $books )->with( 'clients', $clients );
+        return view('library.loands ')->with( 'loands', $loands )->with( 'books', $books )->with( 'clients', $clients );
     }
 
    

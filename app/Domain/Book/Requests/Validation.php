@@ -25,7 +25,7 @@ class Validation extends FormRequest
     public function rules()
     {
         return [
-           'title' => [ 'required' , 'min:2' , 'max:160', 'unique:book' ],
+           'title' => [ 'required' , 'min:2' , 'max:160' ],
            'author' => [ 'required' , 'regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/', 'min:2' , 'max:100', ],
            'value' => [ 'required' , 'integer', 'min:1' ],
            'description' => [ 'required', 'min:2', 'max:512' ],
@@ -39,8 +39,7 @@ class Validation extends FormRequest
             'title.required' =>  'O titulo e obrigatorio.',
             'title.min' => 'Não e permetidos titulos com menos de 2 caracter.',
             'title.max' => 'Não e permetidos titulos com mais de 160 caracter.',
-            'title.unique' => 'Não e permetidos titulos repedido.',
-
+        
             'author.required' => 'O autor e obrigatorio.',
             'author.min' => 'Não e permetidos nome de autor com menos de 2 caracter.',
             'author.max' => 'Não e permetidos nome de autor com mais de 100 caracter.',
